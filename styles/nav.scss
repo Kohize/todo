@@ -1,0 +1,37 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav__title {
+    margin: 0 0 50px 0;
+    padding: 0 0 0 10px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 38px;
+
+    &:hover {
+        color: #ffffff;
+    }
+}
+
+.nav__button {
+    border: 0;
+    color: #ffffff;
+    background-color: transparent;
+    text-align: start;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+
+    &:hover {
+        opacity: 0.7;
+        background-color: #5d3fd3;
+    }
+}
+
+.nav__button--active {
+    background-color: #5d3fd3;
+}

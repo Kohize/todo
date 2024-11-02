@@ -1,13 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Todo App</title>
   </head>
+
   <body>
-    <div id="app"></div>
+    <header class="header">
+      <nav class="nav">
+        <a href="index.html" class="nav__title">Todoish</a>
+        <button class="nav__button nav__button--active">Main Todo</button>
+        <button class="nav__button">Additional Todo</button>
+        <button class="nav__button">Extra Todo</button>
+      </nav>
+    </header>
+    <main id="app">
+      <section class="content">
+        <div class="todo">
+          <input type="text" placeholder="Title" class="todo__title" />
+          <input
+            type="text"
+            placeholder="Description"
+            class="todo__description"
+          />
+          <div class="todo__date">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" class="todo__date" />
+          </div>
+
+          <div class="todo__priority">
+            <p>Priority</p>
+            <div class="todo__radio">
+              <div class="todo__radio-item">
+                <label for="low">Low</label>
+                <input type="radio" id="low" name="low" />
+              </div>
+              <div class="todo__radio-item">
+                <label for="medium">Medium</label>
+                <input type="radio" id="medium" name="medium" />
+              </div>
+              <div class="todo__radio-item">
+                <label for="high">High</label>
+                <input type="radio" id="High" name="High" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
