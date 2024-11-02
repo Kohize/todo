@@ -1,4 +1,6 @@
 import './styles/style.scss'
+import { showSpoiler, hideSpoiler } from './toggleSpoiler'
+const todo = document.querySelector('.todo');
 
 /* 
 TODO
@@ -12,4 +14,13 @@ TODO
 */
 
 
-setupCounter(document.querySelector('#counter'))
+todo.addEventListener('click', (e) => {
+    if (e.target.classList.contains('todo__title')) {
+        showSpoiler();
+    }
+})
+document.addEventListener('click', (e) => {
+    if (todo !== e.target && !todo.contains(e.target)) {
+        hideSpoiler();
+    }
+})
