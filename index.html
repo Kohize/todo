@@ -18,36 +18,52 @@
     </header>
     <main id="app">
       <section class="content">
-        <div class="todo">
-          <input type="text" placeholder="Title" class="todo__title" />
+        <div class="form">
+          <input type="text" placeholder="Title" class="form__title" />
           <input
             type="text"
             placeholder="Description"
-            class="todo__description"
+            class="form__description"
           />
-          <div class="todo__date">
+          <div class="form__date">
             <label for="date">Date</label>
-            <input type="date" name="date" id="date" class="todo__date" />
+            <input type="date" name="date" id="date" class="form__date-input" />
           </div>
 
-          <div class="todo__priority">
+          <div class="form__priority">
             <p>Priority</p>
-            <div class="todo__radio">
-              <div class="todo__radio-item">
+            <div class="form__radio">
+              <div class="form__radio-item">
                 <label for="low">Low</label>
                 <input type="radio" id="low" name="low" />
               </div>
-              <div class="todo__radio-item">
+              <div class="form__radio-item">
                 <label for="medium">Medium</label>
                 <input type="radio" id="medium" name="medium" />
               </div>
-              <div class="todo__radio-item">
+              <div class="form__radio-item">
                 <label for="high">High</label>
                 <input type="radio" id="High" name="High" />
               </div>
             </div>
+            <button class="form__button-add">Add</button>
           </div>
         </div>
+        <!-- <ul class="todo">
+          <li class="todo__item">
+            <input type="checkbox" />
+            <div class="todo__wrapper">
+              <div class="todo__item-name">
+                <p class="todo__date">Date</p>
+                <h3 class="todo__title">Title</h3>
+              </div>
+              <div class="todo__item-extra">
+                <p class="todo__description">Description</p>
+                <span class="todo__priority">Medium</span>
+              </div>
+            </div>
+          </li>
+        </ul> -->
       </section>
     </main>
     <script type="module" src="/main.js"></script>

@@ -1,0 +1,105 @@
+.form {
+    background: #3d3d3d;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    gap: 30px;
+    align-self: center;
+}
+
+.form__title {
+    width: 40vw;
+    background-color: #3d3d3d;
+    border-radius: 15px;
+    padding: 20px;
+    border: 0;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+
+    &::placeholder {
+        font-weight: bold;
+    }
+
+    &:focus-visible {
+        outline: 1px solid #5d3fd3;
+    }
+}
+
+.form__description {
+    @extend .form__title;
+    display: none;
+
+}
+
+.form__date {
+    display: none;
+    align-items: center;
+    padding: 0 0 0 20px;
+    gap: 117px;
+    font-weight: 500;
+    background: transparent;
+    border: 0;
+    color: #ffffff;
+}
+
+.form__date-input {
+    cursor: pointer;
+    padding: 15px;
+    background-color: transparent;
+    border: 0;
+    color: #ffffff;
+
+    &:focus-visible {
+        outline: 1px solid #5d3fd3;
+        border-radius: 15px;
+        fill: #ffffff;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        cursor: pointer;
+    }
+}
+
+.form__priority {
+    display: none;
+    align-items: center;
+    gap: 80px;
+    padding: 0 0 0 20px;
+}
+
+.form__priority p {
+    font-weight: 500;
+}
+
+.form__radio {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.form__radio-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.form__radio-item input {
+    margin: 0;
+    cursor: pointer;
+}
+
+.form__button-add {
+    padding: 10px 20px;
+    background-color: #5d3fd3;
+    color: #ffffff;
+    border: 0;
+    border-radius: 15px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}

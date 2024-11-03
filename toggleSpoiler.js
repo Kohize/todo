@@ -1,17 +1,17 @@
-
-const todoDescription = document.querySelector('.todo__description');
-const todoDate = document.querySelector('.todo__date');
-const todoPriority = document.querySelector('.todo__priority');
+export const formDescription = document.querySelector('.form__description');
+export const formDate = document.querySelector('.form__date');
+export const formPriority = document.querySelector('.form__priority');
+export const fromTitle = document.querySelector('.form__title');
 
 
 export const showSpoiler = () => {
-    todoDescription.style.display = 'block';
-    todoDate.style.display = 'flex';
-    todoPriority.style.display = 'flex';
+    formDescription.style.display = 'block';
+    formDate.style.display = 'flex';
+    formPriority.style.display = 'flex';
 }
 
 export const hideSpoiler = () => {
-    todoDescription.style.display = 'none';
-    todoDate.style.display = 'none';
-    todoPriority.style.display = 'none';
+    formDescription.style.display = 'none';
+    formDate.style.display = 'none';
+    formPriority.style.display = 'none';
 }

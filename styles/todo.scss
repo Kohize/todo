@@ -1,87 +1,49 @@
 .todo {
-    background: #3d3d3d;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.todo__title {
-    width: 40vw;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
     background-color: #3d3d3d;
     border-radius: 15px;
-    padding: 20px;
+    padding: 10px 20px;
     border: 0;
     color: #ffffff;
-    font-size: 18px;
-    font-weight: 500;
-
-    &::placeholder {
-        font-weight: bold;
-    }
-
-    &:focus-visible {
-        outline: 1px solid #5d3fd3;
-    }
+    align-self: center;
+    width: 40vw;
 }
 
-.todo__description {
-    @extend .todo__title;
-    display: none;
+.todo__item {
+    display: flex;
+    gap: 30px
+}
 
+.todo__wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.todo__item-name {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.todo__item-extra {
+    @extend .todo__item-name;
+    justify-content: space-between;
 }
 
 .todo__date {
-    display: none;
-    align-items: center;
-    padding: 0 0 0 20px;
-    gap: 117px;
-    font-weight: 500;
-    background: transparent;
-    border: 0;
-    color: #ffffff;
+    margin: 0;
 }
 
-.todo__date input {
-    cursor: pointer;
-    padding: 15px;
+.todo__title {
+    margin: 0;
+}
 
-    &:focus-visible {
-        outline: 1px solid #5d3fd3;
-        border-radius: 15px;
-        fill: #ffffff;
-    }
-
-    &::-webkit-calendar-picker-indicator {
-        filter: invert(1);
-        cursor: pointer;
-    }
+.todo__description {
+    margin: 0;
 }
 
 .todo__priority {
-    display: none;
-    align-items: center;
-    gap: 100px;
-    padding: 0 0 0 20px;
-}
-
-.todo__priority p {
-    font-weight: 500;
-}
-
-.todo__radio {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.todo__radio-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.todo__radio-item input {
     margin: 0;
-    cursor: pointer;
 }

@@ -1,6 +1,8 @@
 import './styles/style.scss'
 import { showSpoiler, hideSpoiler } from './toggleSpoiler'
-const todo = document.querySelector('.todo');
+import { addTodoToList } from './renderTodo';
+const form = document.querySelector('.form');
+const addButton = document.querySelector('.form__button-add');
 
 /* 
 TODO
@@ -14,13 +16,15 @@ TODO
 */
 
 
-todo.addEventListener('click', (e) => {
-    if (e.target.classList.contains('todo__title')) {
+form.addEventListener('click', (e) => {
+    if (e.target.classList.contains('form__title')) {
         showSpoiler();
     }
 })
 document.addEventListener('click', (e) => {
-    if (todo !== e.target && !todo.contains(e.target)) {
+    if (form !== e.target && !form.contains(e.target)) {
         hideSpoiler();
     }
 })
+
+addButton.addEventListener('click', addTodoToList);
