@@ -14,12 +14,13 @@ class Todo {
 export const addTodoToList = () => {
   const todo = new Todo(formDateInput.value, formTitle.value, formDescription.value, document.querySelector('input[name=radio]:checked').value)
   mainTodoList.push(todo);
-  renderTodo(todo);
   clearFormOnSubmit();
+  console.log(mainTodoList);
+  createTodoTemplate(todo);
+
 }
 
-const renderTodo = (todo) => {
-
+const createTodoTemplate = (todo) => {
   const todoList = document.createElement('ul');
   const todoItem = document.createElement('li');
   todoList.classList.add('todo');
@@ -40,7 +41,6 @@ const renderTodo = (todo) => {
   todoList.append(todoItem);
   mainContent.append(todoList)
 }
-
 
 const clearFormOnSubmit = () => {
   formDateInput.value = '';
