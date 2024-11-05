@@ -1,29 +1,28 @@
 import { formDateInput, formDescription, formTitle } from './toggleSpoiler';
-const mainContent = document.querySelector('.content');
-const mainTodoList = [];
+export const todoList = document.querySelector('.todo');
+export const mainTodoList = [];
 
 class Todo {
-  constructor(date, title, description, priority) {
+  constructor(date, title, description, priority, project) {
     this.date = date;
     this.title = title;
     this.description = description;
     this.priority = priority;
+    this.project = project;
   }
 }
 
 export const addTodoToList = () => {
-  const todo = new Todo(formDateInput.value, formTitle.value, formDescription.value, document.querySelector('input[name=radio]:checked').value)
+  const todo = new Todo(formDateInput.value, formTitle.value, formDescription.value, document.querySelector('input[name=radio]:checked').value, document.querySelector('.nav__button--active').textContent);
   mainTodoList.push(todo);
   clearFormOnSubmit();
+  console.log('main todolist');
   console.log(mainTodoList);
   createTodoTemplate(todo);
-
 }
 
-const createTodoTemplate = (todo) => {
-  const todoList = document.createElement('ul');
+export const createTodoTemplate = (todo) => {
   const todoItem = document.createElement('li');
-  todoList.classList.add('todo');
   todoItem.classList.add('todo__item');
   todoItem.innerHTML = `
     <input type="checkbox" />
@@ -38,8 +37,8 @@ const createTodoTemplate = (todo) => {
               </div>
             </div>
     `
-  todoList.append(todoItem);
-  mainContent.append(todoList)
+  todoList.style.background = '#3d3d3d'
+  todoList.append(todoItem)
 }
 
 const clearFormOnSubmit = () => {
