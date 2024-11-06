@@ -8,6 +8,7 @@
     color: #ffffff;
     align-self: center;
     width: 40vw;
+    background-color: #3d3d3d;
 }
 
 .todo__item {
@@ -18,17 +19,21 @@
 .todo__wrapper {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .todo__item-name {
     display: flex;
     align-items: center;
     gap: 40px;
+    flex-direction: row-reverse;
+    justify-content: space-between
 }
 
 .todo__item-extra {
     @extend .todo__item-name;
     justify-content: space-between;
+    flex-direction: unset;
 }
 
 .todo__date {
@@ -47,4 +52,5 @@
 
 .todo__priority {
     margin: 0;
+    opacity: 0.7;
 }

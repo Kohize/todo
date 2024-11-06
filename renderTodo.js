@@ -1,5 +1,5 @@
 import { formDateInput, formDescription, formTitle } from './toggleSpoiler';
-export const todoList = document.querySelector('.todo');
+export const todoListWrapper = document.querySelector('.todo__wrapper');
 export const mainTodoList = [];
 
 class Todo {
@@ -22,7 +22,9 @@ export const addTodoToList = () => {
 }
 
 export const createTodoTemplate = (todo) => {
+  const todoList = document.createElement('ul')
   const todoItem = document.createElement('li');
+  todoList.classList.add('todo');
   todoItem.classList.add('todo__item');
   todoItem.innerHTML = `
     <input type="checkbox" />
@@ -37,8 +39,9 @@ export const createTodoTemplate = (todo) => {
               </div>
             </div>
     `
-  todoList.style.background = '#3d3d3d'
+  // todoList.style.background = '#3d3d3d'
   todoList.append(todoItem)
+  todoListWrapper.append(todoList);
 }
 
 const clearFormOnSubmit = () => {
@@ -47,7 +50,4 @@ const clearFormOnSubmit = () => {
   formDescription.value = '';
   document.querySelector('input[name=radio]').value = '';
 }
-
-
-
 
