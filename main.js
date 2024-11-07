@@ -1,6 +1,6 @@
 import './styles/style.scss'
 import { showSpoiler, hideSpoiler } from './toggleSpoiler'
-import { addTodoToList } from './renderTodo';
+import { addTodoToList, renderOnPageLoad } from './renderTodo';
 import { createNewWorkspace, showInput, switchWorkspace, changeActiveAttribute } from './createWorkspace';
 const form = document.querySelector('.form');
 const addButton = document.querySelector('.form__button-add');
@@ -18,7 +18,7 @@ TODO
 Пометка завершенности туду
 Сохранение туду в LocalStorage
 */
-
+renderOnPageLoad();
 
 navButton.addEventListener('click', (e) => {
     changeActiveAttribute();

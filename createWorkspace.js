@@ -1,4 +1,4 @@
-import { mainTodoList, todoListWrapper, createTodoTemplate, addTodoToList } from './renderTodo';
+import { mainTodoList, todoListWrapper, createTodoTemplate } from './renderTodo';
 
 const navList = document.querySelector('.nav__list');
 const inputWrapper = document.querySelector('.nav__input-wrapper');

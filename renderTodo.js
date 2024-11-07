@@ -1,6 +1,6 @@
 import { formDateInput, formDescription, formTitle } from './toggleSpoiler';
 export const todoListWrapper = document.querySelector('.todo__wrapper');
-export const mainTodoList = [];
+export const mainTodoList = JSON.parse(localStorage.getItem('todoArray'))
 
 class Todo {
   constructor(date, title, description, priority, project) {
@@ -11,7 +11,9 @@ class Todo {
     this.project = project;
   }
 }
-
+export const renderOnPageLoad = () => {
+  mainTodoList.forEach(todo => createTodoTemplate(todo));
+}
 export const addTodoToList = () => {
   const todo = new Todo(formDateInput.value, formTitle.value, formDescription.value, document.querySelector('input[name=radio]:checked').value, document.querySelector('.nav__button--active').textContent);
   mainTodoList.push(todo);
@@ -19,6 +21,7 @@ export const addTodoToList = () => {
   console.log('main todolist');
   console.log(mainTodoList);
   createTodoTemplate(todo);
+  localStorage.setItem('todoArray', JSON.stringify(mainTodoList))
 }
 
 export const createTodoTemplate = (todo) => {
