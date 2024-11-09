@@ -3,12 +3,15 @@ import { mainTodoList, todoListWrapper, createTodoTemplate } from './renderTodo'
 const navList = document.querySelector('.nav__list');
 const inputWrapper = document.querySelector('.nav__input-wrapper');
 const navInput = document.querySelector('.nav__input');
-let currentTab = document.querySelector('.nav__button--active');
 
 
 
 export const showInput = () => {
     inputWrapper.style.display = 'flex';
+}
+
+export const closeInput = () => {
+    inputWrapper.style.display = 'none';
 }
 
 export const createNewWorkspace = () => {
@@ -29,7 +32,7 @@ export const createNewWorkspace = () => {
 
 export const switchWorkspace = () => {
     todoListWrapper.innerHTML = '';
-    const currentArray = mainTodoList.filter(todo => todo.project === document.querySelector('.nav__button--active').textContent)
+    const currentArray = mainTodoList.filter(todo => todo.project === document.querySelector('.nav__button--active').innerHTML)
     console.log('currentarray is');
     console.log(currentArray);
     currentArray.forEach(todo => createTodoTemplate(todo));

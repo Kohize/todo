@@ -1,10 +1,11 @@
 import './styles/style.scss'
 import { showSpoiler, hideSpoiler } from './toggleSpoiler'
 import { addTodoToList, renderOnPageLoad } from './renderTodo';
-import { createNewWorkspace, showInput, switchWorkspace, changeActiveAttribute } from './createWorkspace';
+import { createNewWorkspace, showInput, closeInput, switchWorkspace, changeActiveAttribute } from './createWorkspace';
 const form = document.querySelector('.form');
 const addButton = document.querySelector('.form__button-add');
 const addNewListButton = document.querySelector('.nav__list-add');
+const closeNewListForm = document.querySelector('.nav__list-close');
 const createButton = document.querySelector('.nav__create');
 const navButton = document.querySelector('.nav__button');
 
@@ -14,11 +15,13 @@ TODO
 ✅Логика создания туду class + Пару моковых
 ✅Логика создание разных листов (слева) Для каждого листа создать свой массив, который будет отрисовываться
 ✅Логика переключения видов туду
-Удаление туду
+✅Удаление туду
+✅Сохранение туду в LocalStorage
+Сохранение списков разных туду (+ localStorage)
 Пометка завершенности туду
-Сохранение туду в LocalStorage
+Возможность редактировать нужную туду
 */
-renderOnPageLoad();
+document.addEventListener('DOMContentLoaded', renderOnPageLoad);
 
 navButton.addEventListener('click', (e) => {
     changeActiveAttribute();
@@ -47,4 +50,6 @@ addNewListButton.addEventListener('click', createNewWorkspace);
 
 // Показать инпут для нового листа
 createButton.addEventListener('click', showInput);
+
+closeNewListForm.addEventListener('click', closeInput);
 
