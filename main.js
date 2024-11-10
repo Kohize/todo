@@ -1,7 +1,7 @@
 import './styles/style.scss'
 import { showSpoiler, hideSpoiler } from './toggleSpoiler'
 import { addTodoToList, renderOnPageLoad } from './renderTodo';
-import { createNewWorkspace, showInput, closeInput, switchWorkspace, changeActiveAttribute } from './createWorkspace';
+import { addWorkspaceToList, showInput, closeInput, switchWorkspace, changeActiveAttribute, renderWorkspaces } from './createWorkspace';
 const form = document.querySelector('.form');
 const addButton = document.querySelector('.form__button-add');
 const addNewListButton = document.querySelector('.nav__list-add');
@@ -42,11 +42,13 @@ document.addEventListener('click', (e) => {
     }
 })
 
+document.addEventListener('DOMContentLoaded', renderWorkspaces);
+
 // Добавить новое туду в список
 addButton.addEventListener('click', addTodoToList);
 
 // Создать новый лист (слева)
-addNewListButton.addEventListener('click', createNewWorkspace);
+addNewListButton.addEventListener('click', addWorkspaceToList);
 
 // Показать инпут для нового листа
 createButton.addEventListener('click', showInput);
