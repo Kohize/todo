@@ -50,7 +50,10 @@ export const createTodoTemplate = (todo) => {
                 <p class="todo__description">${todo.description}</p>
                 <span class="todo__priority">${todo.priority}</span>
               </div>
+              <div class="todo__buttons">
               <button class="todo__remove" data-index="${todo.index}">Remove</button>
+                <button class="todo__edit" data-index="${todo.index}">Edit</button>
+              </div>
             </div>
     `
   todoItem.addEventListener('click', (e) => {
@@ -61,8 +64,20 @@ export const createTodoTemplate = (todo) => {
     } else if (mainTodoList.length == 1 && e.target.classList.contains('todo__remove')) {
       e.target.parentNode.remove();
       removeTodo(todo)
+
+      // удаление контента туду, добавление формы, сабмит формы, замена данных через find
+    } else if (e.target.classList.contains('todo__edit')) {
+      todoItem.innerHTML = '';
+      todoItem.innerHTML = `
+      
+      `
     }
-  })
+  }
+
+
+
+
+  )
   todoList.append(todoItem)
   todoListWrapper.append(todoList);
 }
@@ -81,4 +96,8 @@ const removeTodo = (todo) => {
   }
   mainTodoList.splice(todo.index, 1)
   console.log(mainTodoList.length);
+}
+
+export const editTodo = () => {
+
 }
