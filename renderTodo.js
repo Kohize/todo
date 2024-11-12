@@ -1,7 +1,7 @@
-import { formDateInput, formDescription, formTitle } from './toggleSpoiler';
-import { switchWorkspace } from './createWorkspace';
-export const todoListWrapper = document.querySelector('.todo__wrapper');
-export let mainTodoList = JSON.parse(localStorage.getItem('todoArray'))
+import { formDateInput, formDescription, formTitle } from "./toggleSpoiler";
+import { switchWorkspace } from "./createWorkspace";
+export const todoListWrapper = document.querySelector(".todo__wrapper");
+export let mainTodoList = JSON.parse(localStorage.getItem("todoArray"));
 
 let indexCounter = 0;
 
@@ -22,23 +22,31 @@ export const renderOnPageLoad = () => {
   } else {
     switchWorkspace();
   }
-}
+};
 
 export const addTodoToList = () => {
-  const todo = new Todo(formDateInput.value, formTitle.value, formDescription.value, document.querySelector('input[name=radio]:checked').value, document.querySelector('.nav__button--active').textContent, indexCounter++);
+  const todo = new Todo(
+    formDateInput.value,
+    formTitle.value,
+    formDescription.value,
+    document.querySelector("input[name=radio]:checked").value,
+    document.querySelector(".nav__button--active").textContent,
+    indexCounter++
+  );
+
   mainTodoList.push(todo);
   clearFormOnSubmit();
-  console.log('main todolist');
+  console.log("main todolist");
   console.log(mainTodoList);
   createTodoTemplate(todo);
-  localStorage.setItem('todoArray', JSON.stringify(mainTodoList))
-}
+  localStorage.setItem("todoArray", JSON.stringify(mainTodoList));
+};
 
 export const createTodoTemplate = (todo) => {
-  const todoList = document.createElement('div')
-  todoList.classList.add('todo');
-  const todoItem = document.createElement('div');
-  todoItem.classList.add('todo__item');
+  const todoList = document.createElement("div");
+  todoList.classList.add("todo");
+  const todoItem = document.createElement("div");
+  todoItem.classList.add("todo__item");
   todoItem.innerHTML = `
     <input type="checkbox" />
             <div class="todo__wrapper">
@@ -55,49 +63,99 @@ export const createTodoTemplate = (todo) => {
                 <button class="todo__edit" data-index="${todo.index}">Edit</button>
               </div>
             </div>
-    `
-  todoItem.addEventListener('click', (e) => {
-    if (e.target.classList.contains('todo__remove')) {
-      removeTodo(todo)
+    `;
+  todoItem.addEventListener("click", (e) => {
+    if (e.target.classList.contains("todo__remove")) {
+      removeTodo(todo);
       e.target.parentNode.parentNode.remove();
-      localStorage.setItem('todoArray', JSON.stringify(mainTodoList))
-    } else if (mainTodoList.length == 1 && e.target.classList.contains('todo__remove')) {
+      localStorage.setItem("todoArray", JSON.stringify(mainTodoList));
+    } else if (
+      mainTodoList.length == 1 &&
+      e.target.classList.contains("todo__remove")
+    ) {
       e.target.parentNode.remove();
-      removeTodo(todo)
-
-      // удаление контента туду, добавление формы, сабмит формы, замена данных через find
-    } else if (e.target.classList.contains('todo__edit')) {
-      todoItem.innerHTML = '';
-      todoItem.innerHTML = `
-      
-      `
+      removeTodo(todo);
+    } else if (e.target.classList.contains("todo__edit")) {
+      showTodoForm(todoItem, todo);
     }
-  }
-
-
-
-
-  )
-  todoList.append(todoItem)
+  });
+  todoList.append(todoItem);
   todoListWrapper.append(todoList);
-}
+};
 
 const clearFormOnSubmit = () => {
-  formDateInput.value = '';
-  formTitle.value = '';
-  formDescription.value = '';
-  document.querySelector('input[name=radio]').value = '';
-}
+  formDateInput.value = "";
+  formTitle.value = "";
+  formDescription.value = "";
+  document.querySelector("input[name=radio]").value = "";
+};
 
 const removeTodo = (todo) => {
   if (mainTodoList.length == 1) {
     localStorage.clear();
-    mainTodoList.splice(0, 1)
+    mainTodoList.splice(0, 1);
   }
-  mainTodoList.splice(todo.index, 1)
-  console.log(mainTodoList.length);
-}
+  mainTodoList.splice(todo.index, 1);
+};
 
-export const editTodo = () => {
+export const showTodoForm = (todoItem, todo) => {
+  todoItem.innerHTML = "";
+  todoItem.innerHTML = `
+               <div class="form">
+        <input type="text" placeholder="Title" class="form__title todo__title" />
+        <input type="text" placeholder="Description" class="form__description todo__description" />
+        <div class="form__date todo__day">
+          <label for="date">Date</label>
+          <input type="date" name="date" id="date" class="form__date-input todo__date-input" />
+        </div>
 
-}
+        <div class="form__priority todo__rank">
+          <p>Priority</p>
+          <div class="form__radio">
+            <div class="form__radio-item">
+              <label for="low">Low</label>
+              <input type="radio" id="Low" value="Low" name="todo_radio" class="todo__radio"/>
+            </div>
+            <div class="form__radio-item">
+              <label for="medium">Medium</label>
+              <input type="radio" id="Medium" value="Medium" name="todo_radio" />
+            </div>
+            <div class="form__radio-item">
+              <label for="high">High</label>
+              <input type="radio" id="High" value="High" name="todo_radio" /></input>
+            </div>
+          </div>
+          <button class="form__button-add todo__button-save">Save</button>
+        </div>
+      </div>
+      `;
+
+  const todoDescription = document.querySelector(".todo__description");
+  const todoDate = document.querySelector(".todo__day");
+  const todoPriority = document.querySelector(".todo__rank");
+  const saveButton = document.querySelector(".todo__button-save");
+
+  todoDescription.style.display = "flex";
+  todoDate.style.display = "flex";
+  todoPriority.style.display = "flex";
+
+  saveButton.addEventListener("click", () => {
+    let newArray = mainTodoList.map((element) => {
+      if (element.index === todo.index) {
+        return {
+          ...element,
+          date: document.querySelector(".todo__date-input").value,
+          title: document.querySelector(".todo__title").value,
+          description: document.querySelector(".todo__description").value,
+          priority: document.querySelector("input[name=todo_radio]:checked")
+            .value,
+        };
+      }
+      return element;
+    });
+
+    mainTodoList = newArray;
+    localStorage.setItem("todoArray", JSON.stringify(mainTodoList));
+    switchWorkspace();
+  });
+};

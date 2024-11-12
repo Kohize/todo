@@ -1,13 +1,20 @@
-import './styles/style.scss'
-import { showSpoiler, hideSpoiler } from './toggleSpoiler'
-import { addTodoToList, renderOnPageLoad } from './renderTodo';
-import { addWorkspaceToList, showInput, closeInput, switchWorkspace, changeActiveAttribute, renderWorkspaces } from './createWorkspace';
-const form = document.querySelector('.form');
-const addButton = document.querySelector('.form__button-add');
-const addNewListButton = document.querySelector('.nav__list-add');
-const closeNewListForm = document.querySelector('.nav__list-close');
-const createButton = document.querySelector('.nav__create');
-const navButton = document.querySelector('.nav__button');
+import "./styles/style.scss";
+import { showSpoiler, hideSpoiler } from "./toggleSpoiler";
+import { addTodoToList, renderOnPageLoad } from "./renderTodo";
+import {
+  addWorkspaceToList,
+  showInput,
+  closeInput,
+  switchWorkspace,
+  changeActiveAttribute,
+  renderWorkspaces,
+} from "./createWorkspace";
+const form = document.querySelector(".form");
+const addButton = document.querySelector(".form__button-add");
+const addNewListButton = document.querySelector(".nav__list-add");
+const closeNewListForm = document.querySelector(".nav__list-close");
+const createButton = document.querySelector(".nav__create");
+const navButton = document.querySelector(".nav__button");
 
 /* 
 TODO
@@ -18,40 +25,39 @@ TODO
 ✅Удаление туду
 ✅Сохранение туду в LocalStorage
 ✅Сохранение списков разных туду (+ localStorage)
+✅Возможность редактировать нужную туду
 Пометка завершенности туду
-Возможность редактировать нужную туду
 */
-document.addEventListener('DOMContentLoaded', renderOnPageLoad);
+document.addEventListener("DOMContentLoaded", renderOnPageLoad);
 
-navButton.addEventListener('click', (e) => {
-    changeActiveAttribute();
-    e.target.classList.add('nav__button--active')
-    switchWorkspace();
+navButton.addEventListener("click", (e) => {
+  changeActiveAttribute();
+  e.target.classList.add("nav__button--active");
+  switchWorkspace();
 });
 
 // Показать форму для создания туду
-form.addEventListener('click', (e) => {
-    if (e.target.classList.contains('form__title')) {
-        showSpoiler();
-    }
-})
+form.addEventListener("click", (e) => {
+  if (e.target.classList.contains("form__title")) {
+    showSpoiler();
+  }
+});
 // Спрятать форму для создания туда
-document.addEventListener('click', (e) => {
-    if (form !== e.target && !form.contains(e.target)) {
-        hideSpoiler();
-    }
-})
+document.addEventListener("click", (e) => {
+  if (form !== e.target && !form.contains(e.target)) {
+    hideSpoiler();
+  }
+});
 
-document.addEventListener('DOMContentLoaded', renderWorkspaces);
+document.addEventListener("DOMContentLoaded", renderWorkspaces);
 
 // Добавить новое туду в список
-addButton.addEventListener('click', addTodoToList);
+addButton.addEventListener("click", addTodoToList);
 
 // Создать новый лист (слева)
-addNewListButton.addEventListener('click', addWorkspaceToList);
+addNewListButton.addEventListener("click", addWorkspaceToList);
 
 // Показать инпут для нового листа
-createButton.addEventListener('click', showInput);
+createButton.addEventListener("click", showInput);
 
-closeNewListForm.addEventListener('click', closeInput);
-
+closeNewListForm.addEventListener("click", closeInput);
