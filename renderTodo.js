@@ -6,13 +6,14 @@ export let mainTodoList = JSON.parse(localStorage.getItem("todoArray"));
 let indexCounter = 0;
 
 class Todo {
-  constructor(date, title, description, priority, project, index) {
+  constructor(date, title, description, priority, project, index, done) {
     this.date = date;
     this.title = title;
     this.description = description;
     this.priority = priority;
     this.project = project;
     this.index = index;
+    this.done = done;
   }
 }
 
@@ -31,7 +32,8 @@ export const addTodoToList = () => {
     formDescription.value,
     document.querySelector("input[name=radio]:checked").value,
     document.querySelector(".nav__button--active").textContent,
-    indexCounter++
+    indexCounter++,
+    false
   );
 
   mainTodoList.push(todo);
@@ -48,7 +50,7 @@ export const createTodoTemplate = (todo) => {
   const todoItem = document.createElement("div");
   todoItem.classList.add("todo__item");
   todoItem.innerHTML = `
-    <input type="checkbox" />
+    <input type="checkbox" class="todo__checkbox" ${todo.done ? 'checked' : ''}/>
             <div class="todo__wrapper">
               <div class="todo__item-name">
                 <p class="todo__date">${todo.date}</p>
@@ -77,10 +79,16 @@ export const createTodoTemplate = (todo) => {
       removeTodo(todo);
     } else if (e.target.classList.contains("todo__edit")) {
       showTodoForm(todoItem, todo);
-    }
+    } 
   });
   todoList.append(todoItem);
   todoListWrapper.append(todoList);
+
+  todoItem.addEventListener('change', (e) => {
+    if (e.target.classList.contains('todo__checkbox')) {
+      changeTodoStatus(todo)
+    }
+  })
 };
 
 const clearFormOnSubmit = () => {
@@ -89,6 +97,19 @@ const clearFormOnSubmit = () => {
   formDescription.value = "";
   document.querySelector("input[name=radio]").value = "";
 };
+
+const changeTodoStatus = (todo) => {
+     const currentTodo = mainTodoList.find(element => element.index == todo.index)
+      if (currentTodo && currentTodo.done == true) {
+        console.log(currentTodo);
+        currentTodo.done = false;
+        localStorage.setItem("todoArray", JSON.stringify(mainTodoList));
+      } else if (currentTodo && currentTodo.done == false) {
+           console.log(currentTodo);
+        currentTodo.done = true;
+         localStorage.setItem("todoArray", JSON.stringify(mainTodoList));
+      }
+}
 
 const removeTodo = (todo) => {
   if (mainTodoList.length == 1) {
@@ -153,6 +174,9 @@ export const showTodoForm = (todoItem, todo) => {
       }
       return element;
     });
+  todoDescription.style.display = 'none';
+  todoDate.style.display = 'none';
+  todoPriority.style.display = 'none';
 
     mainTodoList = newArray;
     localStorage.setItem("todoArray", JSON.stringify(mainTodoList));
