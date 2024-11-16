@@ -123,8 +123,8 @@ export const showTodoForm = (todoItem, todo) => {
   todoItem.innerHTML = "";
   todoItem.innerHTML = `
                <div class="form">
-        <input type="text" placeholder="Title" class="form__title todo__title" />
-        <input type="text" placeholder="Description" class="form__description todo__description" />
+        <input type="text" placeholder="Title" class="form__title todo-form__title" />
+        <input type="text" placeholder="Description" class="form__description todo-form__description" />
         <div class="form__date todo__day">
           <label for="date">Date</label>
           <input type="date" name="date" id="date" class="form__date-input todo__date-input" />
@@ -152,13 +152,14 @@ export const showTodoForm = (todoItem, todo) => {
       `;
 
   const todoDescription = document.querySelector(".todo__description");
+  const todoTitle = document.querySelector('.todo__title');
+  const todoPriority = document.querySelector('.todo__rank')
   const todoDate = document.querySelector(".todo__day");
-  const todoPriority = document.querySelector(".todo__rank");
   const saveButton = document.querySelector(".todo__button-save");
 
-  todoDescription.style.display = "flex";
-  todoDate.style.display = "flex";
-  todoPriority.style.display = "flex";
+  todoDescription.style.display = 'flex';
+  todoDate.style.display = 'flex';
+  todoPriority.style.display = 'flex';
 
   saveButton.addEventListener("click", () => {
     let newArray = mainTodoList.map((element) => {
@@ -166,20 +167,21 @@ export const showTodoForm = (todoItem, todo) => {
         return {
           ...element,
           date: document.querySelector(".todo__date-input").value,
-          title: document.querySelector(".todo__title").value,
-          description: document.querySelector(".todo__description").value,
+          title: document.querySelector(".todo-form__title").value,
+          description: document.querySelector(".todo-form__description").value,
           priority: document.querySelector("input[name=todo_radio]:checked")
             .value,
         };
       }
       return element;
     });
-  todoDescription.style.display = 'none';
-  todoDate.style.display = 'none';
-  todoPriority.style.display = 'none';
-
+    console.log(todoDate.value);
+    console.log(todoTitle.value);
     mainTodoList = newArray;
     localStorage.setItem("todoArray", JSON.stringify(mainTodoList));
     switchWorkspace();
   });
+  console.log(todoDescription);
+  console.log(todoDate);
+     console.log(todoTitle);
 };
