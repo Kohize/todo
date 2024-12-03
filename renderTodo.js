@@ -3,7 +3,9 @@ import { switchWorkspace } from "./createWorkspace";
 export const todoListWrapper = document.querySelector(".todo__wrapper");
 export let mainTodoList = JSON.parse(localStorage.getItem("todoArray"));
 
-let indexCounter = 0;
+
+
+let indexCounter = mainTodoList && !mainTodoList.length == 0 ? mainTodoList[mainTodoList.length - 1].index + 1 : 0;
 
 class Todo {
   constructor(date, title, description, priority, project, index, done) {
@@ -69,7 +71,7 @@ export const createTodoTemplate = (todo) => {
   todoItem.addEventListener("click", (e) => {
     if (e.target.classList.contains("todo__remove")) {
       removeTodo(todo);
-      e.target.parentNode.parentNode.remove();
+      e.target.parentNode.parentNode.parentNode.remove();
       localStorage.setItem("todoArray", JSON.stringify(mainTodoList));
     } else if (
       mainTodoList.length == 1 &&
